@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vesna Dobrijević — Koučing i holistička terapija</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --color-bg: #f5ead8;
+  --color-surface: #ebddc5;
+  --color-text: #201e1d;
+  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+  --font-heading: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+  --font-heading-weight: 600;
+  --color-accent: oklch(58% 0.10 335);
+  --color-accent-2: oklch(74% 0.12 78);
+  --color-accent-100: oklch(96% 0.02 335); --color-accent-200: oklch(91% 0.045 335); --color-accent-300: oklch(84% 0.07 335);
+  --color-accent-400: oklch(72% 0.095 335); --color-accent-500: oklch(58% 0.10 335); --color-accent-600: oklch(50% 0.10 335);
+  --color-accent-700: oklch(41% 0.095 335); --color-accent-800: oklch(31% 0.08 335); --color-accent-900: oklch(21% 0.06 335);
+  --color-accent-2-100: oklch(96% 0.025 78); --color-accent-2-200: oklch(92% 0.05 78); --color-accent-2-300: oklch(86% 0.08 78);
+  --color-accent-2-400: oklch(79% 0.105 78); --color-accent-2-500: oklch(74% 0.12 78); --color-accent-2-600: oklch(64% 0.115 78);
+  --color-accent-2-700: oklch(52% 0.10 78); --color-accent-2-800: oklch(39% 0.08 78); --color-accent-2-900: oklch(26% 0.055 78);
+  --space-1: 4.4px; --space-2: 8.8px; --space-3: 13.2px; --space-4: 17.6px; --space-6: 26.4px; --space-8: 35.2px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-lg: 28px;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2e2b25 22%, transparent);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font-body); font-size: 15px; line-height: 1.55; background: var(--color-bg); color: var(--color-text); text-wrap: pretty; overflow-x: clip; }
+h1,h2,h3,h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); line-height: 1.12; margin: 0; }
+p { margin: 0; }
+a { color: var(--color-accent); text-underline-offset: 3px; }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.washed { filter: saturate(0.6) contrast(0.85) brightness(1.1) opacity(0.94); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none;
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 13px; color: var(--color-text);
+  background: transparent; border: 1px solid transparent; padding: calc(var(--space-2) * 0.85) var(--space-3); border-radius: 999px; }
+.btn-primary { background: var(--color-accent); color: var(--color-bg); }
+.btn-primary:hover { background: var(--color-accent-600); }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+.gold-btn { background: linear-gradient(135deg, oklch(84% 0.14 82), oklch(70% 0.15 78)); color: var(--color-accent-900); box-shadow: 0 2px 14px color-mix(in srgb, oklch(78% 0.15 80) 55%, transparent); }
+.gold-btn:hover { background: linear-gradient(135deg, oklch(88% 0.15 82), oklch(74% 0.16 78)); }
+.field > label { display: block; font-size: 12px; margin-bottom: 5px; color: color-mix(in srgb, var(--color-text) 70%, transparent); }
+.input { width: 100%; min-height: 36px; padding: 6px 14px; font: inherit; font-size: 14px; color: var(--color-text);
+  background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: 999px; }
+textarea.input { min-height: 90px; resize: vertical; border-radius: var(--radius-md); }
+.seg { display: inline-flex; overflow: hidden; border: 1px solid var(--color-divider); border-radius: 999px; }
+.seg-opt { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; font-size: 13px; cursor: pointer; }
+.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
+.seg-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+.seg-opt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
+.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-3); border-radius: calc(var(--radius-lg) * 1.15); background: var(--color-surface); }
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-title { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 17px; }
+.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+.card-meta { display: flex; gap: 6px; font-size: 11px; color: color-mix(in srgb, var(--color-text) 50%, transparent); }
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.tag { display: inline-flex; align-items: center; font-size: 11px; letter-spacing: 0.02em; padding: 3px 10px; border-radius: 999px; }
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+.nav { display: flex; align-items: center; gap: clamp(10px,2vw,var(--space-4)); padding: var(--space-3) clamp(20px,5vw,72px);
+  max-width: 1200px; margin: 0 auto; position: relative; }
+.nav-links { display: flex; align-items: center; gap: clamp(10px,2vw,var(--space-4)); margin-left: auto; flex-wrap: wrap; }
+.nav-burger { display: none; }
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: var(--space-2); background: var(--color-bg); padding: var(--space-3) clamp(16px,5vw,72px) var(--space-4); box-shadow: var(--shadow-md); z-index: 40; margin-left: 0; }
+  .nav-burger { display: flex; margin-left: auto; }
+}
+.nav-brand { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 18px; }
+.nav a { color: inherit; text-decoration: none; font-size: 14px; }
+.nav a:hover { color: var(--color-accent); }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px,5vw,72px); }
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">Vesna Dobrijević</span>
+  <button type="button" class="nav-burger" aria-label="Meni" onclick="toggleMenu()" style="cursor:pointer;background:transparent;border:1px solid var(--color-divider);border-radius:999px;width:38px;height:38px;align-items:center;justify-content:center">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="#omeni" onclick="closeMenu()" data-i18n="navAbout">O meni</a>
+    <a href="usluge.html" id="nav-usluge-link" data-i18n="navServices">Usluge</a>
+    <a href="#kursevi" onclick="closeMenu()" data-i18n="navCourses">Kursevi</a>
+    <a href="#prodavnica" onclick="closeMenu()" data-i18n="navShop">Prodavnica</a>
+    <a href="cene.html" id="nav-cene-link" data-i18n="navPricing">Cene</a>
+    <a href="#zakazivanje" onclick="closeMenu()" data-i18n="navBooking">Zakazivanje</a>
+    <a href="#kontakt" onclick="closeMenu()" data-i18n="navContact">Kontakt</a>
+    <div style="display:flex;gap:8px">
+      <button type="button" aria-label="Srpski" onclick="setLang('sr');closeMenu()" style="width:30px;height:22px;padding:0;border-radius:5px;overflow:hidden;display:flex;border:2px solid transparent;cursor:pointer;background:transparent">
+        <svg viewBox="0 0 3 2" width="100%" height="100%" style="display:block"><rect y="0" width="3" height="0.667" fill="#C6363C"></rect><rect y="0.667" width="3" height="0.667" fill="#0C4076"></rect><rect y="1.333" width="3" height="0.667" fill="#fff"></rect></svg>
+      </button>
+      <button type="button" aria-label="English" onclick="setLang('en');closeMenu()" style="width:30px;height:22px;padding:0;border-radius:5px;overflow:hidden;display:flex;border:2px solid transparent;cursor:pointer;background:transparent">
+        <svg viewBox="0 0 60 36" width="100%" height="100%" style="display:block"><rect width="60" height="36" fill="#0A2E6D"></rect><path d="M0 0 L60 36 M60 0 L0 36" stroke="#fff" stroke-width="6"></path><path d="M0 0 L60 36 M60 0 L0 36" stroke="#C6363C" stroke-width="2.4"></path><path d="M30 0 V36 M0 18 H60" stroke="#fff" stroke-width="10"></path><path d="M30 0 V36 M0 18 H60" stroke="#C6363C" stroke-width="6"></path></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section style="position:relative;color:var(--color-bg);border-radius:0 0 calc(var(--radius-lg) * 1.7) calc(var(--radius-lg) * 1.7);padding:calc(var(--space-8) * 1.6) clamp(20px,5vw,72px) calc(var(--space-8) * 1.4);overflow:hidden;background:var(--color-accent-600)">
+  <div style="max-width:1200px;margin:0 auto;position:relative">
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-2-300);margin-bottom:var(--space-3)" data-i18n="heroKicker">Koučing i holistička terapija</span>
+    <h1 style="font-size:clamp(36px,5.4vw,68px);max-width:16ch" data-i18n="heroTitle">Ne moraš da biraš između uspeha i sebe.</h1>
+    <p style="font-size:19px;font-weight:700;line-height:1.5;max-width:48ch;margin-top:var(--space-4);color:var(--color-bg)" data-i18n="heroLead">Spolja si ostvarila mnogo. Ali iznutra osećaš da nešto više nije na svom mestu.</p>
+    <p style="font-size:17px;line-height:1.65;max-width:56ch;margin-top:var(--space-4);color:color-mix(in srgb, var(--color-bg) 85%, transparent)" data-i18n="heroSub">Možda si ostvarila mnogo toga što si nekada želela. Imaš iskustvo, rezultate, odgovornost i život koji spolja izgleda dobro. A ipak, negde duboko osećaš prazninu, nejasnoću ili tiho nezadovoljstvo koje ne umeš u potpunosti da objasniš.</p>
+    <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-6)">
+      <a href="#zakazivanje" class="btn gold-btn" data-i18n="heroCta1">Zakaži besplatan razgovor</a>
+      <a href="#usluge" class="btn" style="color:var(--color-bg);border:1px solid color-mix(in srgb, var(--color-bg) 40%, transparent)" data-i18n="heroCta2">Pogledaj usluge</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section id="omeni" style="padding:calc(var(--space-8) * 0.9) 0 var(--space-8)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-6) clamp(24px,5vw,80px);align-items:center">
+      <figure class="washed" style="margin:0;width:min(320px,100%);aspect-ratio:4/5;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 0 60px 6px color-mix(in srgb, var(--color-accent-2-400) 45%, transparent)">
+        <img src="vesna-portrait.jpg" alt="Portret Vesne" style="height:100%;width:100%;object-fit:cover">
+      </figure>
+      <div>
+        <span class="tag tag-accent" style="margin-bottom:var(--space-3)" data-i18n="aboutTag">O meni</span>
+        <h2 style="font-size:clamp(26px,3vw,36px);margin:var(--space-3) 0;max-width:20ch;color:oklch(42% 0.13 76)" data-i18n="aboutTitle">Transformacioni koučing za lidere, preduzetnike i ljude na životnoj prekretnici</h2>
+        <p style="font-size:16px;line-height:1.75;max-width:52ch;margin:0 0 var(--space-3);color:color-mix(in srgb, var(--color-text) 82%, transparent);font-style:italic" data-i18n="aboutP1">Unutrašnja transformacija je temelj spoljašnjeg ostvarenja. Kada uskladimo ono što jesmo sa onim što želimo da stvorimo, život počinje da se odvija sa više jasnoće, lakoće i svrhe. Uspeh bez unutrašnjeg mira i zadovoljstva vremenom postaje teret.</p>
+        <p style="font-size:15.5px;line-height:1.65;max-width:52ch;margin:0 0 var(--space-3);color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="aboutP2">Moj rad nastao je kao spoj profesionalnog koučinga, dubokog emocionalnog isceljenja i duhovnog vođstva. Više od deset godina privatne prakse, rad sa preko 200 klijenata u korporaciji i preko 1000 sesija koučinga pokazali su mi da istinska transformacija ne dolazi kroz beskrajno analiziranje problema, već kroz jasnoću misli, prisutnost i unutrašnje usklađivanje.</p>
+        <p style="font-size:15.5px;line-height:1.65;max-width:52ch;margin:0 0 var(--space-3);color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="aboutP3">Danas pomažem ljudima koji su spolja uspešni, ali osećaju da stari način života više ne funkcioniše — koji žele da nastave da ostvaruju rezultate, ali bez unutrašnje borbe, hroničnog napora i osećaja da stalno moraju da dokazuju svoju vrednost. Ne radimo samo na ciljevima — radimo na tome da osoba koja ih ostvaruje postane mirnija, jasnija, slobodnija i povezanija sa sobom.</p>
+        <p style="font-size:15.5px;line-height:1.65;max-width:52ch;margin:0;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="aboutP4">Ako osećaš da si na važnoj životnoj ili poslovnoj prekretnici, možda nisi ovde slučajno. Biće mi čast da te na tom putu pratim.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usluge" style="padding:calc(var(--space-8) * 0.6) 0 var(--space-8)">
+    <span class="tag tag-accent" style="margin-bottom:var(--space-3)" data-i18n="servicesTag">Usluge</span>
+    <h2 style="font-size:clamp(26px,3vw,36px);margin:var(--space-3) 0 var(--space-6);max-width:20ch;color:oklch(42% 0.13 76)" data-i18n="servicesTitle">Podrška prilagođena tebi</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4) clamp(20px,4vw,64px);align-items:start;padding:var(--space-6) 0;border-bottom:1px solid var(--color-divider)">
+      <div style="display:flex;align-items:center;gap:var(--space-3)">
+        <span style="width:14px;height:14px;flex:none;border-radius:50%;background:var(--color-accent)"></span>
+        <h3 style="font-size:22px"><a href="usluge.html" class="svc-link" style="color:inherit;text-decoration:none" data-i18n="svc1Title">Transformacioni koučing</a></h3>
+      </div>
+      <div>
+        <p style="font-size:15.5px;line-height:1.65;margin:0 0 var(--space-2);max-width:56ch;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="svc1Copy">Sesije fokusirane na cilj — karijeru, odluke, samopouzdanje. Radimo na tome gde si sada i gde želiš da stigneš, korak po korak.</p>
+        <span class="tag tag-accent-2" data-i18n="svcTag">Onlajn i uživo (Beograd)</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4) clamp(20px,4vw,64px);align-items:start;padding:var(--space-6) 0;border-bottom:1px solid var(--color-divider)">
+      <div style="display:flex;align-items:center;gap:var(--space-3)">
+        <span style="width:14px;height:14px;flex:none;border-radius:50%;background:var(--color-accent)"></span>
+        <h3 style="font-size:22px"><a href="usluge.html" class="svc-link" style="color:inherit;text-decoration:none" data-i18n="svc2Title">Holistička terapija</a></h3>
+      </div>
+      <div>
+        <p style="font-size:15.5px;line-height:1.65;margin:0 0 var(--space-2);max-width:56ch;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="svc2Copy">Prostor za dublji emotivni rad — anksioznost, odnosi, gubitak, promene. Uspostavljanje sklada između misli, tela i energije.</p>
+        <span class="tag tag-accent-2" data-i18n="svcTag">Onlajn i uživo (Beograd)</span>
+      </div>
+    </div>
+    <div style="padding-top:var(--space-5)">
+      <a href="usluge.html" id="services-more-link" class="btn gold-btn" data-i18n="servicesMoreCta">Pogledaj sve detalje usluga →</a>
+    </div>
+  </section>
+
+  <section id="cene" style="padding:var(--space-8) 0">
+    <span class="tag tag-accent" style="margin-bottom:var(--space-3)" data-i18n="pricingTag">Cene</span>
+    <h2 style="font-size:clamp(26px,3vw,36px);margin:var(--space-3) 0 var(--space-6);max-width:18ch;color:oklch(42% 0.13 76)" data-i18n="pricingTitle">Paketi i pojedinačne sesije</h2>
+    <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4)">
+        <div class="card elev-sm" style="gap:var(--space-3)">
+          <span class="card-kicker" data-i18n="p1Name">Transformacioni koučing — pojedinačna sesija</span>
+          <h3 style="font-size:30px;color:var(--color-accent-700)" data-i18n="p1Price">5.900 RSD</h3>
+          <p class="card-body" data-i18n="p1Desc">Jedna koučing sesija, 60 minuta, onlajn ili uživo (Beograd).</p>
+        </div>
+        <div class="card elev-sm" style="gap:var(--space-3)">
+          <span class="card-kicker" data-i18n="p2Name">Transformacioni koučing — paket od 4 sesije</span>
+          <h3 style="font-size:30px;color:var(--color-accent-700)" data-i18n="p2Price">20.000 RSD</h3>
+          <p class="card-body" data-i18n="p2Desc">Četiri sesije po dogovorenom ritmu — pogodno za kontinuirani rad na cilju.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4)">
+        <div class="card elev-sm" style="gap:var(--space-3)">
+          <span class="card-kicker" data-i18n="p3Name">Holistička terapija — pojedinačna sesija</span>
+          <h3 style="font-size:30px;color:var(--color-accent-700)" data-i18n="p3Price">4.500 RSD</h3>
+          <p class="card-body" data-i18n="p3Desc">Jedna terapijska sesija, 50 minuta, onlajn ili uživo (Beograd).</p>
+        </div>
+        <div class="card elev-sm" style="gap:var(--space-3)">
+          <span class="card-kicker" data-i18n="p4Name">Holistička terapija — paket od 3 sesije</span>
+          <h3 style="font-size:30px;color:var(--color-accent-700)" data-i18n="p4Price">12.000 RSD</h3>
+          <p class="card-body" data-i18n="p4Desc">Tri sesije po dogovorenom ritmu — pogodno za kontinuirani rad na ličnoj temi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="zakazivanje" style="padding:calc(var(--space-8) * 1.4) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6) clamp(24px,5vw,72px);align-items:stretch">
+      <div>
+        <span class="tag tag-accent" style="margin-bottom:var(--space-3)" data-i18n="bookingTag">Zakazivanje</span>
+        <h2 style="font-size:clamp(26px,3vw,36px);margin:var(--space-3) 0 var(--space-3);max-width:16ch;color:oklch(42% 0.13 76)" data-i18n="bookingTitle">Zakaži termin</h2>
+        <p style="font-size:15.5px;line-height:1.65;max-width:44ch;margin:0 0 var(--space-6);color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="bookingP1">Tvoj zahtev stiže direktno u kalendar — potvrda termina stiže mejlom ili SMS-om u roku od 24 časa.</p>
+        <figure class="washed" style="margin:0;width:min(320px,100%);aspect-ratio:4/5;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 0 60px 6px color-mix(in srgb, var(--color-accent-2-400) 45%, transparent)">
+          <img src="vesna-booking.jpg" alt="Vesna" style="width:100%;height:100%;object-fit:cover;object-position:center 30%">
+        </figure>
+      </div>
+      <div class="card elev-md" style="padding:var(--space-6);gap:var(--space-4)">
+        <div class="seg">
+          <label class="seg-opt"><input type="radio" name="booktab" checked onchange="setBookTab('free')"><span data-i18n="bookingTabFree">Besplatna konsultacija</span></label>
+          <label class="seg-opt"><input type="radio" name="booktab" onchange="setBookTab('paid')"><span data-i18n="bookingTabPaid">Plaćena sesija</span></label>
+        </div>
+
+        <div id="booking-thanks" class="hidden" style="display:flex;flex-direction:column;gap:var(--space-3);align-items:flex-start;padding:var(--space-4) 0">
+          <span class="tag tag-accent-2" data-i18n="submittedTag">Zahtev poslat</span>
+          <h3 style="font-size:22px;margin:0;color:oklch(42% 0.13 76)" data-i18n="submittedTitle">Hvala! Vesna će uskoro potvrditi termin.</h3>
+          <p style="font-size:14.5px;line-height:1.6;margin:0;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="submittedBody">Odgovor stiže na kontakt koji si ostavio/la, obično u roku od 24 časa.</p>
+          <button type="button" class="btn btn-ghost" onclick="resetBooking()" data-i18n="submittedReset">Pošalji još jedan zahtev</button>
+        </div>
+
+        <form id="booking-free" onsubmit="submitBooking(event,'free')" style="display:flex;flex-direction:column;gap:var(--space-4)">
+          <p style="font-size:14px;line-height:1.6;margin:0;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="freeIntro">Kratak, besplatan razgovor od 15–20 minuta da se upoznamo i vidimo da li smo dobar spoj — bez obaveze.</p>
+          <div class="seg">
+            <label class="seg-opt"><input type="radio" name="mode-free" checked><span data-i18n="modeOnline">Onlajn</span></label>
+            <label class="seg-opt"><input type="radio" name="mode-free"><span data-i18n="modeUzivo">Uživo (Beograd)</span></label>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)">
+            <div class="field"><label data-i18n="formName">Ime i prezime</label><input class="input" type="text" name="ime" data-i18n-ph="namePh" placeholder="Ana Anić" required></div>
+            <div class="field"><label data-i18n="formContact">Mejl</label><input class="input" type="text" name="kontakt" data-i18n-ph="contactPh" placeholder="ana@primer.rs" required></div>
+          </div>
+          <div class="field"><label data-i18n="formDate">Željeni termin (dan / deo dana)</label><input class="input" type="text" name="termin" data-i18n-ph="datePh" placeholder="npr. sreda popodne"></div>
+          <button type="submit" class="btn btn-block gold-btn" data-i18n="formSubmitFree">Zakaži besplatan razgovor</button>
+        </form>
+
+        <form id="booking-paid" class="hidden" onsubmit="submitBooking(event,'paid')" style="display:flex;flex-direction:column;gap:var(--space-4)">
+          <div class="field">
+            <label data-i18n="formService">Usluga</label>
+            <select class="input" name="usluga">
+              <option data-i18n="svc1Title">Transformacioni koučing</option>
+              <option data-i18n="svc2Title">Holistička terapija</option>
+            </select>
+          </div>
+          <div class="seg">
+            <label class="seg-opt"><input type="radio" name="mode-paid" checked><span data-i18n="modeOnline">Onlajn</span></label>
+            <label class="seg-opt"><input type="radio" name="mode-paid"><span data-i18n="modeUzivo">Uživo (Beograd)</span></label>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)">
+            <div class="field"><label data-i18n="formName">Ime i prezime</label><input class="input" type="text" name="ime" data-i18n-ph="namePh" placeholder="Ana Anić" required></div>
+            <div class="field"><label data-i18n="formContact">Mejl</label><input class="input" type="text" name="kontakt" data-i18n-ph="contactPh" placeholder="ana@primer.rs" required></div>
+          </div>
+          <div class="field"><label data-i18n="formDate">Željeni termin (dan / deo dana)</label><input class="input" type="text" name="termin" data-i18n-ph="datePh" placeholder="npr. sreda popodne"></div>
+          <div class="field"><label data-i18n="formNote">Poruka (opciono)</label><textarea class="input" name="poruka" data-i18n-ph="notePh" placeholder="Reci nešto više o tome šta očekuješ od sesije"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block" data-i18n="formSubmit">Pošalji zahtev</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:var(--space-8) 0">
+    <span class="tag tag-accent-2" style="margin-bottom:var(--space-3)" data-i18n="testimonialsTag">Iskustva</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4);margin-top:var(--space-3)">
+      <div class="card elev-sm">
+        <p class="card-body" style="font-size:15px;font-style:italic" data-i18n="quote1">„Hvala ti mnogo draga Vesna što si mi podrška u ovom procesu oslobađanja teških emocija. To što radiš mogu samo veliki ljudi, mislim da ti pripada titula onih koji imaju veliko srce. Ti si velika žena i divna prijateljica!"</p>
+        <span class="card-meta" data-i18n="author1">— Brankica, holističke terapije</span>
+      </div>
+      <div class="card elev-sm">
+        <p class="card-body" style="font-size:15px;font-style:italic" data-i18n="quote2">„Draga Vesna, Ovo je nešto najlepše što sam doživela. Osetila sam takvo olakšanje, mir u duši i opet takav polet energije i sreću u istom trenutku. Beskrajno sam zahvalna na razumevanju i podršci koju si mi uputila. Hvala ti do neba."</p>
+        <span class="card-meta" data-i18n="author2">— Danijela, holističke terapije — sep 2021</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="prodavnica" style="padding:var(--space-8) 0">
+    <span class="tag tag-accent" style="margin-bottom:var(--space-3)" data-i18n="shopTag">Prodavnica</span>
+    <h2 style="font-size:clamp(26px,3vw,36px);margin:var(--space-3) 0 var(--space-6);max-width:20ch;color:oklch(42% 0.13 76)" data-i18n="shopHeading">Dnevnik meditacije</h2>
+    <div class="card elev-md" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-6);padding:var(--space-6);align-items:center">
+      <figure class="washed" style="margin:0;width:min(320px,100%);aspect-ratio:4/5;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 0 60px 6px color-mix(in srgb, var(--color-accent-2-400) 45%, transparent);position:relative">
+        <img src="dnevnik-meditacije.jpg" alt="Korice: Dnevnik meditacije" style="width:100%;height:100%;object-fit:cover">
+        <button type="button" onclick="openFlipbook()" data-i18n="previewCta" style="position:absolute;right:14px;bottom:14px;z-index:2" class="btn gold-btn">Prelistaj</button>
+      </figure>
+      <div>
+        <h3 style="font-size:26px;margin:0 0 var(--space-2);color:oklch(42% 0.13 76)" data-i18n="productName">Dnevnik meditacija</h3>
+        <p style="font-size:15px;line-height:1.65;margin:0 0 var(--space-3);max-width:48ch;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="productDesc">Dnevnik meditacija u digitalnom (PDF) izdanju, licenciran za ličnu upotrebu — prostor da zapišeš uvide posle meditacije, terapije ili tihog trenutka za sebe. Kupuješ onlajn i odmah preuzimaš, bez čekanja pošte.</p>
+        <p style="font-family:var(--font-heading);font-weight:600;font-size:24px;margin:0 0 var(--space-4);color:var(--color-accent-700)" data-i18n="productPrice">2.200 RSD</p>
+
+        <div id="shop-cart">
+          <div style="display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap">
+            <div class="seg">
+              <button type="button" class="seg-opt" onclick="shopQty(-1)">−</button>
+              <span class="seg-opt" id="shop-qty" style="min-width:2ch;text-align:center">1</span>
+              <button type="button" class="seg-opt" onclick="shopQty(1)">+</button>
+            </div>
+            <button type="button" class="btn gold-btn" onclick="showShop('form')" data-i18n="buyCta">Kupi i preuzmi</button>
+          </div>
+        </div>
+
+        <form id="shop-form" class="hidden" onsubmit="submitDiary(event)" style="display:flex;flex-direction:column;gap:var(--space-3);max-width:360px">
+          <div class="field"><label data-i18n="formName">Ime i prezime</label><input class="input" type="text" name="ime" data-i18n-ph="namePh" placeholder="Ana Anić" required></div>
+          <div class="field"><label data-i18n="formContact">Mejl</label><input class="input" type="text" name="kontakt" data-i18n-ph="contactPh" placeholder="ana@primer.rs" required></div>
+          <div class="field"><label data-i18n="formNote">Poruka (opciono)</label><textarea class="input" name="poruka" data-i18n-ph="diaryNotePh" placeholder="Želim broj računa za kupovinu Dnevnika meditacija"></textarea></div>
+          <button type="submit" class="btn btn-block gold-btn" data-i18n="diaryBuyCta">KUPI</button>
+        </form>
+
+        <div id="shop-done" class="hidden" style="display:flex;flex-direction:column;gap:var(--space-2);align-items:flex-start">
+          <span class="tag tag-accent-2" data-i18n="addedTitle">Zahtev primljen</span>
+          <p style="font-size:14px;margin:0;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="addedBody">Vesna će ti poslati broj računa za uplatu i uputstvo za preuzimanje na kontakt koji si ostavio/la, obično u roku od 24 časa.</p>
+          <button type="button" class="btn btn-ghost" onclick="showShop('cart')" data-i18n="addedReset">Nova porudžbina</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kursevi" style="padding:var(--space-8) 0">
+    <span class="tag tag-accent-2" style="margin-bottom:var(--space-3)" data-i18n="coursesTag">Kursevi</span>
+    <h2 style="font-size:clamp(26px,3vw,36px);margin:var(--space-3) 0 var(--space-3);max-width:20ch;color:oklch(42% 0.13 76)" data-i18n="coursesTitle">Uči svojim tempom</h2>
+    <p style="font-size:15.5px;line-height:1.65;max-width:56ch;margin:0 0 var(--space-6);color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="coursesCopy">Onlajn programi koji ostaju uz tebe i posle sesije — kratki moduli za rad na sebi, kojima se vraćaš kad god ti zatreba. Ako nakon prvog modula proceniš da program nije za tebe, uplatu vraćamo bez pitanja.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4)">
+      <div class="card elev-sm" style="gap:var(--space-3)">
+        <span class="card-kicker" data-i18n="courseStatus">Uskoro</span>
+        <h3 class="card-title" data-i18n="course1Title">Osnove emocionalne otpornosti</h3>
+        <p class="card-body" data-i18n="course1Desc">Kratak onlajn program o prepoznavanju i regulaciji emocija u svakodnevnim situacijama.</p>
+      </div>
+      <div class="card elev-sm" style="gap:var(--space-3)">
+        <span class="card-kicker" data-i18n="courseStatus">Uskoro</span>
+        <h3 class="card-title" data-i18n="course2Title">Uvod u energetski rad</h3>
+        <p class="card-body" data-i18n="course2Desc">Vodič kroz osnovne vežbe energetske psihologije za samostalnu praksu kod kuće.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" style="padding:0 0 var(--space-8)">
+    <div style="background:var(--color-accent-2-100);border-radius:calc(var(--radius-lg) * 2);padding:clamp(24px,6vw,calc(var(--space-8) * 0.9)) clamp(20px,4vw,64px);display:flex;flex-wrap:wrap;gap:var(--space-6);justify-content:space-between;align-items:center">
+      <div>
+        <h3 style="font-size:26px;color:oklch(42% 0.13 76)" data-i18n="contactTitle">Prvi korak je samo jedan razgovor</h3>
+        <p style="font-size:15.5px;line-height:1.65;margin-top:var(--space-2);max-width:44ch;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="contactInfo">Beograd, Srbija · vedob1@gmail.com</p>
+      </div>
+      <a href="#zakazivanje" class="btn gold-btn" data-i18n="contactCta">Zakaži termin</a>
+    </div>
+  </section>
+
+  <footer style="padding:var(--space-6) 0;font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent)" data-i18n="footer">© 2026 Vesna Dobrijević — koučing i holistička terapija.</footer>
+</div>
+
+<div id="flip-modal" class="hidden" onclick="if(event.target===this) closeFlipbook()" style="position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:var(--space-4);background:color-mix(in srgb, var(--color-accent-900) 70%, transparent)">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-3);max-width:520px;width:100%">
+    <div id="flip-swipe" style="position:relative;width:min(320px,100%);aspect-ratio:4/5;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-lg);background:#fff;touch-action:none">
+      <img id="flip-img" src="preview/single-01.jpg" alt="Stranica dnevnika" style="width:100%;height:100%;object-fit:contain;background:#fff;pointer-events:none">
+      <button type="button" onclick="closeFlipbook()" aria-label="Zatvori" style="position:absolute;right:8px;top:8px;width:36px;height:36px;border-radius:50%;border:none;background:color-mix(in srgb, #201e1d 55%, transparent);color:#fff;font-size:16px;cursor:pointer;z-index:2">✕</button>
+      <button type="button" onclick="flipPage(-1)" aria-label="Prethodna" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:none;background:color-mix(in srgb, #201e1d 55%, transparent);color:#fff;font-size:20px;cursor:pointer;z-index:2">‹</button>
+      <button type="button" onclick="flipPage(1)" aria-label="Sledeća" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:none;background:color-mix(in srgb, #201e1d 55%, transparent);color:#fff;font-size:20px;cursor:pointer;z-index:2">›</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:var(--space-3)">
+      <span id="flip-counter" style="color:#fff;font-size:13px">1 / 9</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xykregpg';
+
+const I18N_EN = {
+  navAbout: 'About', navServices: 'Services', navCourses: 'Courses', navShop: 'Shop', navPricing: 'Pricing', navBooking: 'Booking', navContact: 'Contact',
+  heroKicker: 'Coaching &amp; holistic therapy',
+  heroTitle: 'You don\u2019t have to choose between success and yourself.',
+  heroLead: 'On the outside, you\u2019ve achieved a lot. But inside, something feels out of place.',
+  heroSub: 'You may have achieved much of what you once wanted. You have experience, results, responsibility, and a life that looks good from the outside. And yet, somewhere deep down, you feel an emptiness, a vagueness, or a quiet dissatisfaction you can\u2019t fully explain.',
+  heroCta1: 'Book a free call', heroCta2: 'See services',
+  aboutTag: 'About', aboutTitle: 'Transformational coaching for leaders, entrepreneurs and people at a life turning point',
+  aboutP1: 'Inner transformation is the foundation of outer achievement. When we align who we are with what we want to create, life begins to unfold with more clarity, ease and purpose. Success without inner peace and contentment eventually becomes a burden.',
+  aboutP2: 'My work grew out of the intersection of professional coaching, deep emotional healing and spiritual guidance. Over a decade of private practice, work with more than 200 corporate clients and over 1000 coaching hours have shown me that real transformation comes through clarity of thought, presence, and inner alignment.',
+  aboutP3: 'Today I help people who are outwardly successful but feel their old way of living no longer works — who want to keep achieving results, but without the inner struggle and the constant need to prove their worth. We work on the person achieving the goals becoming calmer, clearer, freer, and more connected to themselves.',
+  aboutP4: 'If you feel you are at an important life or business turning point, you may not be here by chance. It would be an honor to accompany you on that path.',
+  servicesTag: 'Services', servicesTitle: 'Support shaped around you', servicesMoreCta: 'See full service details →',
+  svc1Title: 'Transformational coaching', svc1Copy: 'Goal-focused sessions on career, decisions, confidence. We work on where you are now and where you want to get, one step at a time.',
+  svc2Title: 'Holistic therapy', svc2Copy: 'Room for deeper emotional work — anxiety, relationships, loss, change. Aligning thought, body and energy.',
+  svcTag: 'Online &amp; in person',
+  pricingTag: 'Pricing', pricingTitle: 'Packages and single sessions',
+  p1Name: 'Transformational coaching — single session', p1Price: '5,900 RSD', p1Desc: 'One coaching session, 60 minutes, online or in person.',
+  p2Name: 'Transformational coaching — 4-session package', p2Price: '20,000 RSD', p2Desc: 'Four sessions at an agreed pace — suited for sustained work on a goal.',
+  p3Name: 'Holistic therapy — single session', p3Price: '4,500 RSD', p3Desc: 'One therapy session, 50 minutes, online or in person.',
+  p4Name: 'Holistic therapy — 3-session package', p4Price: '12,000 RSD', p4Desc: 'Three sessions at an agreed pace — suited for sustained work on a goal.',
+  coursesTag: 'Courses', coursesTitle: 'Learn at your own pace',
+  coursesCopy: "Online programs that stay with you beyond the session — short modules for inner work you can return to whenever you need. If the first module isn't for you, we refund it, no questions asked.",
+  courseStatus: 'Coming soon',
+  course1Title: 'Foundations of emotional resilience', course1Desc: 'A short online program on recognizing and regulating emotions in everyday situations.',
+  course2Title: 'Introduction to energy work', course2Desc: 'A guide to basic energy psychology exercises for practicing on your own at home.',
+  shopTag: 'Shop', shopHeading: 'Meditation journal',
+  productName: 'Meditation journal', productPrice: '2,200 RSD',
+  productDesc: 'A guided journal for daily practice, as a digital (PDF) edition — space to write down insights after meditation, therapy, or a quiet moment for yourself. Buy online and download instantly, no shipping wait.',
+  buyCta: 'Buy &amp; download', previewCta: 'Preview',
+  diaryNotePh: 'I\u2019d like the account number to buy the Meditation Journal', diaryBuyCta: 'BUY',
+  addedTitle: 'Request received', addedBody: 'Vesna will send the account number for payment and download instructions to the contact you left, usually within 24 hours.',
+  addedReset: 'New order',
+  bookingTag: 'Booking', bookingTitle: 'Book a session',
+  bookingTabFree: 'Free consultation', bookingTabPaid: 'Paid session',
+  freeIntro: 'A short, free 15–20 minute call to get acquainted and see if we are a good fit — no obligation.',
+  bookingP1: 'Your request goes straight into the calendar — a confirmation usually follows by email or text within 24 hours.',
+  formService: 'Service', formName: 'Full name', formContact: 'Email', formDate: 'Preferred time (day / part of day)', formNote: 'Message (optional)',
+  formSubmit: 'Send request', formSubmitFree: 'Book a free call',
+  modeOnline: 'Online', modeUzivo: 'In person',
+  namePh: 'Jane Doe', contactPh: 'jane@example.com', datePh: 'e.g. Wednesday afternoon', notePh: 'Tell me a bit about what brings you here or what you hope for from a session',
+  submittedTag: 'Request sent', submittedTitle: 'Thank you! Vesna will confirm your slot shortly.',
+  submittedBody: 'A reply will reach the contact you left, usually within 24 hours.', submittedReset: 'Send another request',
+  testimonialsTag: 'Testimonials',
+  quote1: '„Thank you so much dear Vesna for supporting me through this process of releasing heavy emotions. What you do can only be done by truly great people — I think you deserve the title of someone with a huge heart. You are a wonderful woman and a dear friend!"', author1: '— Brankica, holistic therapy',
+  quote2: '„Dear Vesna, this is one of the most beautiful things I have experienced. I felt such relief, peace within, and at the same time a surge of energy and joy. I am endlessly grateful for the understanding and support you gave me. Thank you so much."', author2: '— Danijela, holistic therapy — Sep 2021',
+  contactTitle: 'The first step is just one conversation', contactInfo: 'Belgrade, Serbia · vedob1@gmail.com', contactCta: 'Book a session',
+  footer: '© 2026 Vesna Dobrijević — coaching &amp; holistic therapy.'
+};
+
+function toggleMenu() { document.getElementById('nav-links').classList.toggle('open'); }
+function closeMenu() { document.getElementById('nav-links').classList.remove('open'); }
+document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem('vd_lang') === 'en') setLang('en'); });
+
+function setLang(lang) {
+  localStorage.setItem('vd_lang', lang);
+  document.documentElement.lang = lang;
+  const q = lang === 'en' ? '?lang=en' : '';
+  document.querySelectorAll('.svc-link, #services-more-link').forEach(el => { el.href = 'usluge.html' + q; });
+  const cl = document.getElementById('nav-cene-link'); if (cl) cl.href = 'cene.html' + q;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (!('srOriginal' in el.dataset)) el.dataset.srOriginal = el.innerHTML;
+    el.innerHTML = lang === 'en' && I18N_EN[el.dataset.i18n] ? I18N_EN[el.dataset.i18n] : el.dataset.srOriginal;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    if (!('phSrOriginal' in el.dataset)) el.dataset.phSrOriginal = el.getAttribute('placeholder');
+    const key = el.dataset.i18nPh;
+    el.setAttribute('placeholder', lang === 'en' && I18N_EN[key] ? I18N_EN[key] : el.dataset.phSrOriginal);
+  });
+}
+
+const PRODUCT_UNIT_PRICE = 2200;
+let shopQtyVal = 1;
+function shopQty(d) {
+  shopQtyVal = Math.max(1, Math.min(9, shopQtyVal + d));
+  document.getElementById('shop-qty').textContent = shopQtyVal;
+}
+function showShop(step) {
+  document.getElementById('shop-cart').classList.toggle('hidden', step !== 'cart');
+  document.getElementById('shop-form').classList.toggle('hidden', step !== 'form');
+  document.getElementById('shop-done').classList.toggle('hidden', step !== 'done');
+}
+function submitDiary(e) {
+  e.preventDefault();
+  const form = e.target;
+  const payload = {
+    tip_zahteva: 'Kupovina proizvoda',
+    usluga: 'Dnevnik meditacija — online izdanje',
+    ime: form.ime.value, kontakt: form.kontakt.value, poruka: form.poruka.value
+  };
+  fetch(FORMSPREE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) }).catch(() => {});
+  showShop('done');
+}
+
+function setBookTab(tab) {
+  document.getElementById('booking-free').classList.toggle('hidden', tab !== 'free');
+  document.getElementById('booking-paid').classList.toggle('hidden', tab !== 'paid');
+  document.getElementById('booking-thanks').classList.add('hidden');
+  document.getElementById(tab === 'free' ? 'booking-free' : 'booking-paid').classList.remove('hidden');
+}
+function submitBooking(e, tab) {
+  e.preventDefault();
+  const form = e.target;
+  const payload = {
+    tip_zahteva: tab === 'free' ? 'Besplatna konsultacija' : 'Plaćena sesija',
+    usluga: form.usluga ? form.usluga.value : '—',
+    nacin: form.querySelector('input[type=radio]:checked') ? form.querySelector('input[type=radio]:checked').parentElement.textContent.trim() : '',
+    ime: form.ime.value,
+    kontakt: form.kontakt.value,
+    zeljeni_termin: form.termin.value,
+    poruka: form.poruka ? form.poruka.value : ''
+  };
+  fetch(FORMSPREE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) }).catch(() => {});
+  form.classList.add('hidden');
+  document.getElementById('booking-thanks').classList.remove('hidden');
+}
+function resetBooking() {
+  document.getElementById('booking-thanks').classList.add('hidden');
+  document.getElementById('booking-free').reset();
+  document.getElementById('booking-paid').reset();
+  setBookTab('free');
+}
+
+const FLIP_TOTAL_PAGES = 9;
+let flipCurrent = 1;
+function openFlipbook() {
+  flipCurrent = 1;
+  updateFlip();
+  document.getElementById('flip-modal').classList.remove('hidden');
+}
+function closeFlipbook() {
+  document.getElementById('flip-modal').classList.add('hidden');
+}
+function flipPage(dir) {
+  flipCurrent = Math.min(FLIP_TOTAL_PAGES, Math.max(1, flipCurrent + dir));
+  updateFlip();
+}
+function updateFlip() {
+  document.getElementById('flip-img').src = flipCurrent === 1 ? 'dnevnik-meditacije.jpg' : ('preview/single-' + String(flipCurrent - 1).padStart(2,'0') + '.jpg');
+  document.getElementById('flip-counter').textContent = flipCurrent + ' / ' + FLIP_TOTAL_PAGES;
+}
+let flipTouchX = null, flipTouchY = null;
+document.addEventListener('DOMContentLoaded', function() {
+  const el = document.getElementById('flip-swipe');
+  if (!el) return;
+  el.addEventListener('touchstart', function(e) { flipTouchX = e.touches[0].clientX; flipTouchY = e.touches[0].clientY; });
+  el.addEventListener('touchmove', function(e) {
+    if (flipTouchX == null) return;
+    const dx = e.touches[0].clientX - flipTouchX;
+    const dy = e.touches[0].clientY - flipTouchY;
+    if (Math.abs(dx) > Math.abs(dy)) e.preventDefault();
+  }, { passive: false });
+  el.addEventListener('touchend', function(e) {
+    if (flipTouchX == null) return;
+    const dx = e.changedTouches[0].clientX - flipTouchX;
+    if (Math.abs(dx) > 30) { flipPage(dx < 0 ? 1 : -1); }
+    flipTouchX = null;
+  });
+});
+</script>
+</body>
+</html>

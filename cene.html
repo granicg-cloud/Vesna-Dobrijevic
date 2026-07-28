@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vesna Dobrijević — Cene</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --color-bg: #f5ead8; --color-surface: #ebddc5; --color-text: #201e1d;
+  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+  --font-heading: "Fraunces", serif; --font-body: "Inter", sans-serif; --font-heading-weight: 600;
+  --color-accent: oklch(58% 0.10 335); --color-accent-2: oklch(74% 0.12 78);
+  --color-accent-100: oklch(96% 0.02 335); --color-accent-600: oklch(50% 0.10 335); --color-accent-700: oklch(41% 0.095 335);
+  --color-accent-800: oklch(31% 0.08 335); --color-accent-900: oklch(21% 0.06 335);
+  --color-accent-2-100: oklch(96% 0.025 78); --color-accent-2-300: oklch(86% 0.08 78); --color-accent-2-800: oklch(39% 0.08 78);
+  --space-1: 4.4px; --space-2: 8.8px; --space-3: 13.2px; --space-4: 17.6px; --space-6: 26.4px; --space-8: 35.2px;
+  --radius-lg: 28px;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font-body); font-size: 15px; line-height: 1.55; background: var(--color-bg); color: var(--color-text); text-wrap: pretty; overflow-x: clip; }
+h1,h2,h3 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); line-height: 1.12; margin: 0; }
+p { margin: 0; }
+a { color: var(--color-accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none;
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 13px; color: var(--color-text);
+  background: transparent; border: 1px solid transparent; padding: calc(var(--space-2) * 0.85) var(--space-3); border-radius: 999px; }
+.btn-primary { background: var(--color-accent); color: var(--color-bg); }
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+.gold-btn { background: linear-gradient(135deg, oklch(84% 0.14 82), oklch(70% 0.15 78)); color: var(--color-accent-900); box-shadow: 0 2px 14px color-mix(in srgb, oklch(78% 0.15 80) 55%, transparent); }
+.field > label { display: block; font-size: 12px; margin-bottom: 5px; color: color-mix(in srgb, var(--color-text) 70%, transparent); }
+.input { width: 100%; min-height: 36px; padding: 6px 14px; font: inherit; font-size: 14px; color: var(--color-text);
+  background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: 999px; }
+textarea.input { min-height: 90px; resize: vertical; border-radius: var(--radius-lg); }
+.seg { display: inline-flex; overflow: hidden; border: 1px solid var(--color-divider); border-radius: 999px; }
+.seg-opt { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; font-size: 13px; cursor: pointer; }
+.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
+.seg-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+.seg-opt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
+.card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-3); border-radius: calc(var(--radius-lg) * 1.15); background: var(--color-surface); }
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.tag { display: inline-flex; align-items: center; font-size: 11px; letter-spacing: 0.02em; padding: 3px 10px; border-radius: 999px; }
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+.nav { display: flex; align-items: center; gap: clamp(10px,2vw,var(--space-4)); padding: var(--space-3) clamp(20px,5vw,72px);
+  max-width: 1200px; margin: 0 auto; position: relative; }
+.nav-links { display: flex; align-items: center; gap: clamp(10px,2vw,var(--space-4)); margin-left: auto; flex-wrap: wrap; }
+.nav-burger { display: none; }
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: var(--space-2); background: var(--color-bg); padding: var(--space-3) clamp(16px,5vw,72px) var(--space-4); box-shadow: var(--shadow-md); z-index: 40; margin-left: 0; }
+  .nav-burger { display: flex; margin-left: auto; }
+}
+.nav-brand { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 18px; }
+.nav a { color: inherit; text-decoration: none; font-size: 14px; }
+.nav a:hover { color: var(--color-accent); }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px,5vw,72px); }
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">Vesna Dobrijević</span>
+  <button type="button" class="nav-burger" aria-label="Meni" onclick="toggleMenu()" style="cursor:pointer;background:transparent;border:1px solid var(--color-divider);border-radius:999px;width:38px;height:38px;align-items:center;justify-content:center">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html#omeni" onclick="closeMenu()" data-i18n="navAbout">O meni</a>
+    <a href="usluge.html" data-i18n="navServices">Usluge</a>
+    <a href="index.html#kursevi" onclick="closeMenu()" data-i18n="navCourses">Kursevi</a>
+    <a href="index.html#prodavnica" onclick="closeMenu()" data-i18n="navShop">Prodavnica</a>
+    <a href="cene.html" data-i18n="navPricing">Cene</a>
+    <a href="index.html#zakazivanje" onclick="closeMenu()" data-i18n="navBooking">Zakazivanje</a>
+    <a href="index.html#kontakt" onclick="closeMenu()" data-i18n="navContact">Kontakt</a>
+    <div style="display:flex;gap:8px">
+      <button type="button" aria-label="Srpski" onclick="setLang('sr');closeMenu()" style="width:30px;height:22px;padding:0;border-radius:5px;overflow:hidden;display:flex;border:2px solid transparent;cursor:pointer;background:transparent">
+        <svg viewBox="0 0 3 2" width="100%" height="100%" style="display:block"><rect y="0" width="3" height="0.667" fill="#C6363C"></rect><rect y="0.667" width="3" height="0.667" fill="#0C4076"></rect><rect y="1.333" width="3" height="0.667" fill="#fff"></rect></svg>
+      </button>
+      <button type="button" aria-label="English" onclick="setLang('en');closeMenu()" style="width:30px;height:22px;padding:0;border-radius:5px;overflow:hidden;display:flex;border:2px solid transparent;cursor:pointer;background:transparent">
+        <svg viewBox="0 0 60 36" width="100%" height="100%" style="display:block"><rect width="60" height="36" fill="#0A2E6D"></rect><path d="M0 0 L60 36 M60 0 L0 36" stroke="#fff" stroke-width="6"></path><path d="M0 0 L60 36 M60 0 L0 36" stroke="#C6363C" stroke-width="2.4"></path><path d="M30 0 V36 M0 18 H60" stroke="#fff" stroke-width="10"></path><path d="M30 0 V36 M0 18 H60" stroke="#C6363C" stroke-width="6"></path></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section style="position:relative;color:var(--color-bg);border-radius:0 0 calc(var(--radius-lg) * 1.7) calc(var(--radius-lg) * 1.7);padding:calc(var(--space-8) * 1.1) clamp(20px,5vw,72px) calc(var(--space-8) * 1.1);overflow:hidden;background:var(--color-accent-600)">
+  <div style="max-width:1200px;margin:0 auto">
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-2-300);margin-bottom:var(--space-3)" data-i18n="pricingTag">Cene</span>
+    <h1 style="font-size:clamp(30px,4.4vw,52px);max-width:20ch" data-i18n="pricingTitle">Paketi i pojedinačne sesije</h1>
+  </div>
+</section>
+
+<div class="wrap">
+  <section style="padding:calc(var(--space-8) * 1.2) 0 var(--space-8)">
+    <div style="display:flex;flex-direction:column;gap:var(--space-6)">
+      <div>
+        <h2 style="font-size:20px;margin-bottom:var(--space-3)" data-i18n="groupCoaching">Transformacioni koučing</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4)">
+          <div class="card elev-sm" style="gap:var(--space-3)">
+            <span class="card-kicker" data-i18n="p1Name">Transformacioni koučing — pojedinačna sesija</span>
+            <h3 style="font-size:30px;color:var(--color-accent-700)" data-i18n="p1Price">5.900 RSD</h3>
+            <p class="card-body" data-i18n="p1Desc">Jedna koučing sesija, 60 minuta, onlajn ili uživo (Beograd).</p>
+          </div>
+          <div class="card elev-sm" style="gap:var(--space-3)">
+            <span class="card-kicker" data-i18n="p2Name">Transformacioni koučing — paket od 4 sesije</span>
+            <h3 style="font-size:30px;color:var(--color-accent-700)" data-i18n="p2Price">20.000 RSD</h3>
+            <p class="card-body" data-i18n="p2Desc">Četiri sesije po dogovorenom ritmu — pogodno za kontinuirani rad na cilju.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 style="font-size:20px;margin-bottom:var(--space-3)" data-i18n="groupTherapy">Holistička terapija</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4)">
+          <div class="card elev-sm" style="gap:var(--space-3)">
+            <span class="card-kicker" data-i18n="p3Name">Holistička terapija — pojedinačna sesija</span>
+            <h3 style="font-size:30px;color:var(--color-accent-700)" data-i18n="p3Price">4.500 RSD</h3>
+            <p class="card-body" data-i18n="p3Desc">Jedna terapijska sesija, 50 minuta, onlajn ili uživo (Beograd).</p>
+          </div>
+          <div class="card elev-sm" style="gap:var(--space-3)">
+            <span class="card-kicker" data-i18n="p4Name">Holistička terapija — paket od 3 sesije</span>
+            <h3 style="font-size:30px;color:var(--color-accent-700)" data-i18n="p4Price">12.000 RSD</h3>
+            <p class="card-body" data-i18n="p4Desc">Tri sesije po dogovorenom ritmu — pogodno za kontinuirani rad na ličnoj temi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:var(--space-6)">
+      <button type="button" class="btn gold-btn" onclick="openBooking()" data-i18n="cta">Zakaži termin</button>
+    </div>
+  </section>
+  <footer style="padding:var(--space-6) 0;font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent)" data-i18n="footer">© 2026 Vesna Dobrijević — koučing i holistička terapija.</footer>
+</div>
+
+<div id="booking-modal" class="hidden" onclick="if(event.target===this) closeBooking()" style="position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:var(--space-4);background:color-mix(in srgb, var(--color-accent-900) 60%, transparent)">
+  <div class="card elev-md" style="padding:var(--space-6);gap:var(--space-4);max-width:440px;width:100%;max-height:88vh;overflow:auto">
+    <div id="booking-thanks" class="hidden" style="display:flex;flex-direction:column;gap:var(--space-3);align-items:flex-start">
+      <span class="tag tag-accent-2" data-i18n="submittedTag">Zahtev poslat</span>
+      <h3 style="font-size:22px" data-i18n="submittedTitle">Hvala! Vesna će uskoro potvrditi termin.</h3>
+      <p style="font-size:14.5px;line-height:1.6;margin:0;color:color-mix(in srgb, var(--color-text) 78%, transparent)" data-i18n="submittedBody">Odgovor stiže na kontakt koji si ostavio/la, obično u roku od 24 časa.</p>
+      <button type="button" class="btn btn-ghost" onclick="closeBooking()" data-i18n="closeCta">Zatvori</button>
+    </div>
+    <form id="booking-form" onsubmit="submitBooking(event)" style="display:flex;flex-direction:column;gap:var(--space-4)">
+      <span class="tag tag-accent" data-i18n="bookingTitle">Zakaži termin</span>
+      <div class="field">
+        <label data-i18n="formService">Usluga</label>
+        <select class="input" name="usluga">
+          <option data-i18n="svc1Title">Transformacioni koučing</option>
+          <option data-i18n="svc2Title">Holistička terapija</option>
+        </select>
+      </div>
+      <div class="seg">
+        <label class="seg-opt"><input type="radio" name="mode" checked><span data-i18n="modeOnline">Onlajn</span></label>
+        <label class="seg-opt"><input type="radio" name="mode"><span data-i18n="modeUzivo">Uživo (Beograd)</span></label>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)">
+        <div class="field"><label data-i18n="formName">Ime i prezime</label><input class="input" type="text" name="ime" data-i18n-ph="namePh" placeholder="Ana Anić" required></div>
+        <div class="field"><label data-i18n="formContact">Mejl</label><input class="input" type="text" name="kontakt" data-i18n-ph="contactPh" placeholder="ana@primer.rs" required></div>
+      </div>
+      <div class="field"><label data-i18n="formDate">Željeni termin (dan / deo dana)</label><input class="input" type="text" name="termin" data-i18n-ph="datePh" placeholder="npr. sreda popodne"></div>
+      <div class="field"><label data-i18n="formNote">Poruka (opciono)</label><textarea class="input" name="poruka" data-i18n-ph="notePh" placeholder="Reci nešto više o tome šta očekuješ od sesije"></textarea></div>
+      <button type="submit" class="btn btn-primary btn-block" data-i18n="formSubmit">Pošalji zahtev</button>
+    </form>
+  </div>
+</div>
+
+<script>
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xykregpg';
+const currentLangParam = ((new URLSearchParams(window.location.search).get('lang')) || localStorage.getItem('vd_lang')) === 'en' ? 'en' : 'sr';
+
+const I18N_EN = {
+  navAbout: 'About', navServices: 'Services', navCourses: 'Courses', navShop: 'Shop', navPricing: 'Pricing', navBooking: 'Booking', navContact: 'Contact',
+  pricingTag: 'Pricing', pricingTitle: 'Packages and single sessions',
+  groupCoaching: 'Transformational coaching', groupTherapy: 'Holistic therapy',
+  p1Name: 'Transformational coaching — single session', p1Price: '5,900 RSD', p1Desc: 'One coaching session, 60 minutes, online or in person.',
+  p2Name: 'Transformational coaching — 4-session package', p2Price: '20,000 RSD', p2Desc: 'Four sessions at an agreed pace — suited for sustained work on a goal.',
+  p3Name: 'Holistic therapy — single session', p3Price: '4,500 RSD', p3Desc: 'One therapy session, 50 minutes, online or in person.',
+  p4Name: 'Holistic therapy — 3-session package', p4Price: '12,000 RSD', p4Desc: 'Three sessions at an agreed pace — suited for sustained work on a goal.',
+  cta: 'Book a session', bookingTitle: 'Book a session', formService: 'Service', svc1Title: 'Transformational coaching', svc2Title: 'Holistic therapy',
+  submittedTag: 'Request sent', submittedTitle: 'Thank you! Vesna will confirm your slot shortly.',
+  submittedBody: 'A reply will reach the contact you left, usually within 24 hours.', closeCta: 'Close',
+  modeOnline: 'Online', modeUzivo: 'In person',
+  formName: 'Full name', formContact: 'Email', formDate: 'Preferred time (day / part of day)', formNote: 'Message (optional)', formSubmit: 'Send request',
+  namePh: 'Jane Doe', contactPh: 'jane@example.com', datePh: 'e.g. Wednesday afternoon', notePh: 'Tell me a bit about what brings you here or what you hope for from a session',
+  footer: '© 2026 Vesna Dobrijević — coaching &amp; holistic therapy.'
+};
+
+function toggleMenu() { document.getElementById('nav-links').classList.toggle('open'); }
+function closeMenu() { document.getElementById('nav-links').classList.remove('open'); }
+document.addEventListener('DOMContentLoaded', () => { if (currentLangParam === 'en') setLang('en'); });
+
+function setLang(lang) {
+  localStorage.setItem('vd_lang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (!('srOriginal' in el.dataset)) el.dataset.srOriginal = el.innerHTML;
+    el.innerHTML = lang === 'en' && I18N_EN[el.dataset.i18n] ? I18N_EN[el.dataset.i18n] : el.dataset.srOriginal;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    if (!('phSrOriginal' in el.dataset)) el.dataset.phSrOriginal = el.getAttribute('placeholder');
+    const key = el.dataset.i18nPh;
+    el.setAttribute('placeholder', lang === 'en' && I18N_EN[key] ? I18N_EN[key] : el.dataset.phSrOriginal);
+  });
+}
+
+function openBooking() {
+  document.getElementById('booking-thanks').classList.add('hidden');
+  document.getElementById('booking-form').classList.remove('hidden');
+  document.getElementById('booking-form').reset();
+  document.getElementById('booking-modal').classList.remove('hidden');
+}
+function closeBooking() {
+  document.getElementById('booking-modal').classList.add('hidden');
+}
+function submitBooking(e) {
+  e.preventDefault();
+  const form = e.target;
+  const payload = {
+    tip_zahteva: 'Plaćena sesija', usluga: form.usluga ? form.usluga.value : '—',
+    nacin: form.querySelector('input[type=radio]:checked') ? form.querySelector('input[type=radio]:checked').parentElement.textContent.trim() : '',
+    ime: form.ime.value, kontakt: form.kontakt.value, zeljeni_termin: form.termin.value, poruka: form.poruka.value
+  };
+  fetch(FORMSPREE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) }).catch(() => {});
+  form.classList.add('hidden');
+  document.getElementById('booking-thanks').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
