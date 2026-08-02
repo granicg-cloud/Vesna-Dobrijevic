@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVVNS9L191"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SVVNS9L191');
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vesna Dobrijević — Koučing i holistička terapija</title>
@@ -416,6 +424,7 @@ const I18N_EN = {
 
 function toggleMenu() { document.getElementById('nav-links').classList.toggle('open'); }
 function closeMenu() { document.getElementById('nav-links').classList.remove('open'); }
+document.addEventListener('DOMContentLoaded', () => { const saved = localStorage.getItem('vd_lang'); if (saved === 'en') setLang('en'); });
 document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem('vd_lang') === 'en') setLang('en'); });
 
 function setLang(lang) {
