@@ -91,6 +91,7 @@ textarea.input { min-height: 90px; resize: vertical; border-radius: var(--radius
     <a href="index.html#kursevi" onclick="closeMenu()" data-i18n="navCourses">Kursevi</a>
     <a href="index.html#prodavnica" onclick="closeMenu()" data-i18n="navShop">Prodavnica</a>
     <a href="cene.html" data-i18n="navPricing">Cene</a>
+    <a href="blog.html" data-i18n="navBlog">Blog</a>
     <a href="index.html#zakazivanje" onclick="closeMenu()" data-i18n="navBooking">Zakazivanje</a>
     <a href="index.html#kontakt" onclick="closeMenu()" data-i18n="navContact">Kontakt</a>
     <div style="display:flex;gap:8px">
@@ -189,7 +190,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xykregpg';
 const currentLangParam = ((new URLSearchParams(window.location.search).get('lang')) || localStorage.getItem('vd_lang')) === 'en' ? 'en' : 'sr';
 
 const I18N_EN = {
-  navAbout: 'About', navServices: 'Services', navCourses: 'Courses', navShop: 'Shop', navPricing: 'Pricing', navBooking: 'Booking', navContact: 'Contact',
+  navAbout: 'About', navServices: 'Services', navCourses: 'Courses', navShop: 'Shop', navPricing: 'Pricing', navBlog: 'Blog', navBooking: 'Booking', navContact: 'Contact',
   pricingTag: 'Pricing', pricingTitle: 'Packages and single sessions',
   groupCoaching: 'Transformational coaching', groupTherapy: 'Holistic therapy',
   p1Name: 'Transformational coaching — single session', p1Price: '5,900 RSD', p1Desc: 'One coaching session, 60 minutes, online or in person.',
