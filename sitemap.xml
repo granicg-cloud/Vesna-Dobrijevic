@@ -30,4 +30,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://vesnadobrijevic.com/blog/karijera-ili-zadovoljavajuci-odnosi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vesnadobrijevic.com/blog/nevidljivi-prtljag-korporacije.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
