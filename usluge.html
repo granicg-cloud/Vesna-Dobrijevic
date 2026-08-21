@@ -84,6 +84,7 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   <div class="nav-links" id="nav-links">
     <a href="index.html#omeni" onclick="closeMenu()" data-i18n="navAbout">O meni</a>
     <a href="usluge.html" data-i18n="navServices">Usluge</a>
+    <a href="besplatan-upitnik.html" data-i18n="navQuiz">Besplatan test</a>
     <a href="index.html#kursevi" onclick="closeMenu()" data-i18n="navCourses">Kursevi</a>
     <a href="index.html#prodavnica" onclick="closeMenu()" data-i18n="navShop">Prodavnica</a>
     <a href="cene.html" data-i18n="navPricing">Cene</a>
@@ -160,24 +161,6 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
     </div>
       </section>
 
-  <section style="padding:0 0 var(--space-8)">
-    <div style="border-radius:calc(var(--radius-lg) * 1.15);background:var(--color-surface);padding:calc(var(--space-8) * 0.85) clamp(24px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4) clamp(20px,4vw,64px);align-items:center">
-      <div>
-        <span style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-800);margin-bottom:var(--space-2)">Besplatan test</span>
-        <h2 style="font-size:clamp(24px,3vw,32px);max-width:16ch">Test spremnosti za unutrašnju transformaciju</h2>
-      </div>
-      <div>
-        <p style="font-size:15.5px;line-height:1.65;margin:0 0 var(--space-3);max-width:56ch;color:color-mix(in srgb, var(--color-text) 78%, transparent)">
-          Smesti se udobno, odgovori na 6 kratkih pitanja i saznaj u kojoj se fazi unutrašnje promene trenutno nalaziš — rezultat i predlog sledećeg koraka stižu ti direktno na mejl.
-        </p>
-        <div style="display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap">
-          <span class="tag tag-accent-2">Besplatno</span>
-          <a href="besplatan-upitnik.html" class="btn gold-btn">Uradi test</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer style="padding:var(--space-6) 0;font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent)" data-i18n="footer">© 2026 Vesna Dobrijević — koučing i holistička terapija.</footer>
 </div>
 
@@ -215,7 +198,7 @@ let currentServiceIdx = 0;
 let currentLang = ((new URLSearchParams(window.location.search).get('lang')) || localStorage.getItem('vd_lang')) === 'en' ? 'en' : 'sr';
 
 const I18N_EN = {
-  navAbout: 'About', navServices: 'Services', navCourses: 'Courses', navShop: 'Shop', navPricing: 'Pricing', navBooking: 'Booking', navContact: 'Contact',
+  navAbout: 'About', navServices: 'Services', navQuiz: 'Free test', navCourses: 'Courses', navShop: 'Shop', navPricing: 'Pricing', navBooking: 'Booking', navContact: 'Contact',
   servicesTag: 'Services', servicesTitle: 'Support shaped around you',
   svc1Title: 'Transformational coaching',
   svc1Copy: 'For people seeking clarity, direction and the next level of personal and professional growth. Designed for successful people at a life or business turning point who want to make decisions from inner clarity, not fear or pressure. Together we shape a clear vision for life and career, define priorities and goals, and remove the inner patterns slowing your progress.',
