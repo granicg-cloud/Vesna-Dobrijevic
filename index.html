@@ -83,7 +83,7 @@ textarea.input { min-height: 90px; resize: vertical; border-radius: var(--radius
 .tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
 .tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
 .nav { display: flex; align-items: center; gap: clamp(10px,2vw,var(--space-4)); padding: var(--space-3) clamp(20px,5vw,72px);
-  max-width: 1200px; margin: 0 auto; position: relative; }
+  max-width: 1200px; margin: 0 auto; position: sticky; top: 0; z-index: 50; background: var(--color-bg); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
 .nav-links { display: flex; align-items: center; gap: clamp(10px,2vw,var(--space-4)); margin-left: auto; flex-wrap: wrap; }
 .nav-burger { display: none; }
 @media (max-width: 760px) {
@@ -384,9 +384,9 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xykregpg';
 const I18N_EN = {
   navAbout: 'About', navServices: 'Services', navQuiz: 'Free test', navCourses: 'Courses', navShop: 'Shop', navPricing: 'Pricing', navBooking: 'Booking', navContact: 'Contact',
   heroKicker: 'Coaching &amp; holistic therapy',
-  heroTitle: 'You don\u2019t have to choose between success and yourself.',
-  heroLead: 'On the outside, you\u2019ve achieved a lot. But inside, something feels out of place.',
-  heroSub: 'You may have achieved much of what you once wanted. You have experience, results, responsibility, and a life that looks good from the outside. And yet, somewhere deep down, you feel an emptiness, a vagueness, or a quiet dissatisfaction you can\u2019t fully explain.',
+  heroTitle: 'You don’t have to choose between success and yourself.',
+  heroLead: 'On the outside, you’ve achieved a lot. But inside, something feels out of place.',
+  heroSub: 'You may have achieved much of what you once wanted. You have experience, results, responsibility, and a life that looks good from the outside. And yet, somewhere deep down, you feel an emptiness, a vagueness, or a quiet dissatisfaction you can’t fully explain.',
   heroCta1: 'Book a free call', heroCta2: 'See services',
   aboutTag: 'About', aboutTitle: 'Transformational coaching for leaders, entrepreneurs and people at a life turning point',
   aboutP1: 'Inner transformation is the foundation of outer achievement. When we align who we are with what we want to create, life begins to unfold with more clarity, ease and purpose. Success without inner peace and contentment eventually becomes a burden.',
@@ -411,7 +411,7 @@ const I18N_EN = {
   productName: 'Meditation journal', productPrice: '2,200 RSD',
   productDesc: 'A guided journal for daily practice, as a digital (PDF) edition — space to write down insights after meditation, therapy, or a quiet moment for yourself. Buy online and download instantly, no shipping wait.',
   buyCta: 'Buy &amp; download', previewCta: 'Preview',
-  diaryNotePh: 'I\u2019d like the account number to buy the Meditation Journal', diaryBuyCta: 'BUY',
+  diaryNotePh: 'I’d like the account number to buy the Meditation Journal', diaryBuyCta: 'BUY',
   addedTitle: 'Request received', addedBody: 'Vesna will send the account number for payment and download instructions to the contact you left, usually within 24 hours.',
   addedReset: 'New order',
   bookingTag: 'Booking', bookingTitle: 'Book a session',
